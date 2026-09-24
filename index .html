@@ -1,0 +1,1636 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SahelShop — Boutique en ligne | N'Djamena, Tchad</title>
+<meta name="description" content="SahelShop : la boutique en ligne de N'Djamena. Électronique, mode, maison, beauté. Paiement Mobile Money et livraison partout au Tchad.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛍️</text></svg>">
+<style>
+/* ==========================================================================
+   1. RESET & VARIABLES
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root{
+  --bg:#f6f7fb;
+  --surface:#ffffff;
+  --surface-2:#f0f1f8;
+  --text:#151824;
+  --muted:#5d6374;
+  --border:#e5e8f1;
+  --primary:#ff5a2c;
+  --primary-600:#e9471c;
+  --primary-soft:#fff0e9;
+  --green:#0f9d58;
+  --green-soft:#e6f6ee;
+  --gold:#f5a623;
+  --radius:18px;
+  --radius-sm:12px;
+  --shadow:0 12px 34px rgba(21,24,36,.10);
+  --shadow-sm:0 4px 14px rgba(21,24,36,.08);
+  --nav-h:72px;
+  --font:"Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+}
+[data-theme="dark"]{
+  --bg:#0e1017;
+  --surface:#171a25;
+  --surface-2:#1f2332;
+  --text:#f1f2f7;
+  --muted:#9aa1b5;
+  --border:#272c3d;
+  --primary-soft:#33201a;
+  --green-soft:#12301f;
+  --shadow:0 12px 34px rgba(0,0,0,.45);
+  --shadow-sm:0 4px 14px rgba(0,0,0,.35);
+}
+
+html{ scroll-behavior:smooth; }
+body{
+  font-family:var(--font);
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+body.no-scroll{ overflow:hidden; }
+img,svg{ display:block; max-width:100%; }
+a{ color:inherit; text-decoration:none; }
+button{ font-family:inherit; cursor:pointer; border:none; background:none; color:inherit; }
+input,select,textarea{ font-family:inherit; font-size:1rem; color:var(--text); }
+ul{ list-style:none; }
+
+.container{ width:min(1200px, 92%); margin-inline:auto; }
+.ic{ width:1.25em; height:1.25em; flex:none; }
+.ic-lg{ width:1.6em; height:1.6em; }
+
+/* ==========================================================================
+   2. BOUTONS & CHIPS
+   ========================================================================== */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:.55rem;
+  font-weight:700; font-size:.98rem; padding:.85rem 1.6rem; border-radius:999px;
+  transition:transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s;
+  white-space:nowrap;
+}
+.btn:active{ transform:scale(.97); }
+.btn-primary{
+  background:linear-gradient(135deg,var(--primary),var(--primary-600));
+  color:#fff; box-shadow:0 10px 24px rgba(255,90,44,.35);
+}
+.btn-primary:hover{ transform:translateY(-2px); box-shadow:0 14px 30px rgba(255,90,44,.45); }
+.btn-outline{
+  border:2px solid var(--border); color:var(--text); background:var(--surface);
+}
+.btn-outline:hover{ border-color:var(--primary); color:var(--primary); transform:translateY(-2px); }
+.btn-ghost{ background:var(--surface); box-shadow:var(--shadow-sm); }
+.btn-ghost:hover{ transform:translateY(-2px); color:var(--primary); }
+.btn-sm{ padding:.55rem 1.05rem; font-size:.88rem; }
+
+.chip{
+  display:inline-flex; align-items:center; gap:.45rem; padding:.55rem 1.15rem;
+  border-radius:999px; border:1.5px solid var(--border); background:var(--surface);
+  font-weight:600; font-size:.9rem; transition:all .18s ease;
+}
+.chip:hover{ border-color:var(--primary); color:var(--primary); transform:translateY(-2px); }
+.chip.active{
+  background:var(--text); color:var(--bg); border-color:var(--text);
+}
+.badge-pill{
+  display:inline-flex; align-items:center; gap:.4rem; padding:.35rem .85rem;
+  border-radius:999px; background:var(--green-soft); color:var(--green);
+  font-size:.82rem; font-weight:700;
+}
+
+/* ==========================================================================
+   3. TOPBAR + HEADER + NAV
+   ========================================================================== */
+.topbar{
+  background:#101321; color:#c9cede; font-size:.82rem; padding:.45rem 0;
+}
+[data-theme="dark"] .topbar{ background:#0a0c12; }
+.topbar-inner{ display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap; }
+.topbar a:hover{ color:#fff; }
+.topbar b{ color:var(--primary); }
+.topbar .tb-content{ display:flex; gap:1.2rem; align-items:center; }
+.topbar .tb-content span{ display:inline-flex; align-items:center; gap:.35rem; }
+
+.header{
+  position:sticky; top:0; z-index:60;
+  background:color-mix(in srgb, var(--surface) 88%, transparent);
+  backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+}
+.header-inner{
+  height:var(--nav-h); display:flex; align-items:center; gap:1.4rem;
+}
+.logo{ display:flex; align-items:center; gap:.6rem; font-weight:800; font-size:1.35rem; letter-spacing:-.02em; }
+.logo .logo-badge{
+  width:42px; height:42px; border-radius:14px; display:grid; place-items:center;
+  background:linear-gradient(135deg,var(--primary),#ff8a5c); color:#fff;
+  box-shadow:0 8px 18px rgba(255,90,44,.35);
+}
+.logo em{ font-style:normal; color:var(--primary); }
+
+.nav-desktop{ display:flex; gap:.35rem; margin-left:auto; }
+.nav-desktop a{
+  padding:.6rem 1rem; border-radius:999px; font-weight:600; font-size:.95rem; color:var(--muted);
+  transition:all .18s;
+}
+.nav-desktop a:hover, .nav-desktop a.active{ color:var(--text); background:var(--surface-2); }
+
+.header-actions{ display:flex; align-items:center; gap:.5rem; }
+.icon-btn{
+  width:44px; height:44px; border-radius:14px; display:grid; place-items:center;
+  background:var(--surface-2); color:var(--text); position:relative; transition:all .18s;
+  border:1px solid transparent;
+}
+.icon-btn:hover{ color:var(--primary); border-color:var(--primary); transform:translateY(-2px); }
+.cart-count{
+  position:absolute; top:-6px; right:-6px; min-width:20px; height:20px; padding:0 5px;
+  background:var(--primary); color:#fff; font-size:.72rem; font-weight:800;
+  border-radius:999px; display:grid; place-items:center; border:2px solid var(--surface);
+}
+.cart-count.bump{ animation:bump .35s ease; }
+@keyframes bump{ 40%{ transform:scale(1.45);} }
+
+.burger{ display:none; }
+.mobile-menu{
+  position:fixed; inset:0; z-index:70; background:var(--bg);
+  padding:1.2rem 0; transform:translateX(-102%); transition:transform .32s ease;
+  display:flex; flex-direction:column; gap:.4rem; overflow-y:auto;
+}
+.mobile-menu.open{ transform:translateX(0); }
+.mobile-menu .mm-head{ display:flex; justify-content:space-between; align-items:center; }
+.mobile-menu a{
+  padding:1rem 1.2rem; border-radius:14px; font-weight:700; font-size:1.05rem;
+  display:flex; align-items:center; gap:.8rem; color:var(--muted);
+}
+.mobile-menu a:hover{ background:var(--surface-2); color:var(--text); }
+
+/* ==========================================================================
+   4. HERO
+   ========================================================================== */
+.hero{ padding:4.5rem 0 3.5rem; }
+.hero-grid{ display:grid; grid-template-columns:1.05fr .95fr; gap:3rem; align-items:center; }
+.hero h1{
+  font-size:clamp(2.2rem, 4.6vw, 3.6rem); line-height:1.12; letter-spacing:-.03em; font-weight:800;
+  margin:1.1rem 0 1rem;
+}
+.grad-text{
+  background:linear-gradient(120deg,var(--primary) 10%,#ff9a3c 55%,var(--primary) 95%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.hero p.lead{ color:var(--muted); font-size:1.08rem; max-width:34rem; }
+.hero-search{
+  margin-top:1.6rem; display:flex; align-items:center; gap:.5rem;
+  background:var(--surface); border:2px solid var(--border); border-radius:999px;
+  padding:.45rem .45rem .45rem 1.4rem; max-width:33rem;
+  transition:border-color .2s, box-shadow .2s;
+}
+.hero-search:focus-within{ border-color:var(--primary); box-shadow:0 0 0 4px rgba(255,90,44,.12); }
+.hero-search input{ flex:1; border:none; outline:none; background:none; font-size:1rem; min-width:0; }
+.hero-search button{ flex:none; }
+.hero-stats{
+  display:flex; gap:2.2rem; margin-top:2.2rem; flex-wrap:wrap;
+}
+.hero-stats .stat b{ font-size:1.5rem; display:block; letter-spacing:-.02em; }
+.hero-stats .stat span{ color:var(--muted); font-size:.88rem; }
+
+.hero-art-wrap{ position:relative; }
+.hero-art-wrap::before{
+  content:""; position:absolute; inset:6% 2%; z-index:-1; border-radius:38% 62% 55% 45%/48% 40% 60% 52%;
+  background:linear-gradient(135deg, rgba(255,90,44,.16), rgba(255,154,60,.10));
+  filter:blur(6px);
+}
+.hero-art{ width:100%; height:auto; }
+.float-tile{ animation:floaty 5.5s ease-in-out infinite; transform-origin:center; }
+.float-tile.d2{ animation-delay:-2.2s; }
+.float-tile.d3{ animation-delay:-3.8s; }
+@keyframes floaty{ 50%{ transform:translateY(-12px);} }
+
+/* ==========================================================================
+   5. SECTIONS GÉNÉRIQUES
+   ========================================================================== */
+section{ padding:3.6rem 0; }
+.sec-head{ text-align:center; max-width:640px; margin:0 auto 2.4rem; }
+.sec-head h2{ font-size:clamp(1.6rem, 3vw, 2.3rem); letter-spacing:-.02em; font-weight:800; }
+.sec-head p{ color:var(--muted); margin-top:.5rem; }
+.kicker{
+  display:inline-flex; align-items:center; gap:.4rem; font-weight:800; font-size:.8rem;
+  letter-spacing:.12em; text-transform:uppercase; color:var(--primary);
+  background:var(--primary-soft); padding:.35rem .9rem; border-radius:999px; margin-bottom:.9rem;
+}
+
+/* ==========================================================================
+   6. CATÉGORIES
+   ========================================================================== */
+.cat-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(170px,1fr)); gap:1.1rem; }
+.cat-card{
+  background:var(--surface); border:1.5px solid var(--border); border-radius:var(--radius);
+  padding:1.4rem 1rem; text-align:center; transition:all .2s ease; cursor:pointer;
+}
+.cat-card:hover{ transform:translateY(-6px); border-color:var(--primary); box-shadow:var(--shadow); }
+.cat-icon{
+  width:64px; height:64px; margin:0 auto .8rem; border-radius:20px; display:grid; place-items:center;
+}
+.cat-card h3{ font-size:.98rem; font-weight:700; }
+.cat-card span{ color:var(--muted); font-size:.8rem; }
+
+/* ==========================================================================
+   7. BANNIÈRE PROMO + COMPTE À REBOURS
+   ========================================================================== */
+.promo-banner{
+  border-radius:26px; padding:2.6rem 2.4rem; position:relative; overflow:hidden;
+  background:linear-gradient(120deg,#2a1a3e 0%, #4a1751 45%, #7a1f4e 100%);
+  color:#fff; display:flex; align-items:center; justify-content:space-between; gap:2rem; flex-wrap:wrap;
+}
+[data-theme="dark"] .promo-banner{ background:linear-gradient(120deg,#231434,#3d123f,#5c183c); }
+.promo-banner::before{
+  content:"-30%"; position:absolute; right:-40px; top:-70px; font-size:13rem; font-weight:900;
+  color:rgba(255,255,255,.06); letter-spacing:-.05em; line-height:1; pointer-events:none;
+}
+.promo-banner::after{
+  content:""; position:absolute; left:-80px; bottom:-120px; width:280px; height:280px; border-radius:50%;
+  border:3px dashed rgba(255,255,255,.18); pointer-events:none;
+}
+.promo-txt h3{ font-size:clamp(1.5rem,3vw,2.2rem); font-weight:800; letter-spacing:-.02em; }
+.promo-txt p{ opacity:.85; margin-top:.4rem; max-width:30rem; }
+.countdown{ display:flex; align-items:center; gap:1.4rem; position:relative; z-index:1; }
+.countdown .cd-label{ font-size:.85rem; text-transform:uppercase; letter-spacing:.1em; opacity:.75; max-width:110px; }
+.cd-boxes{ display:flex; gap:.6rem; }
+.cd-box{
+  background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.22); backdrop-filter:blur(6px);
+  border-radius:14px; min-width:74px; padding:.7rem .4rem; text-align:center;
+}
+.cd-box b{ font-size:1.7rem; font-weight:800; display:block; font-variant-numeric:tabular-nums; }
+.cd-box span{ font-size:.7rem; text-transform:uppercase; letter-spacing:.08em; opacity:.75; }
+
+/* ==========================================================================
+   8. BOUTIQUE / GRILLE PRODUITS
+   ========================================================================== */
+.shop-toolbar{
+  display:flex; align-items:center; gap:.6rem; flex-wrap:wrap; margin-bottom:1.6rem;
+}
+.shop-toolbar .chips{ display:flex; gap:.5rem; flex-wrap:wrap; }
+.shop-toolbar .spacer{ flex:1; }
+.result-count{ color:var(--muted); font-size:.9rem; font-weight:600; }
+.select-wrap{ position:relative; }
+.select-wrap select{
+  appearance:none; padding:.62rem 2.4rem .62rem 1.1rem; border-radius:999px;
+  border:1.5px solid var(--border); background:var(--surface); font-weight:600; font-size:.9rem;
+  cursor:pointer; outline:none;
+}
+.select-wrap select:focus{ border-color:var(--primary); }
+.select-wrap::after{
+  content:"▾"; position:absolute; right:1rem; top:50%; transform:translateY(-50%);
+  pointer-events:none; color:var(--muted); font-size:.85rem;
+}
+
+.prod-grid{
+  display:grid; grid-template-columns:repeat(auto-fill, minmax(235px,1fr)); gap:1.4rem;
+}
+.product-card{
+  background:var(--surface); border:1.5px solid var(--border); border-radius:var(--radius);
+  overflow:hidden; display:flex; flex-direction:column; position:relative;
+  transition:transform .22s ease, box-shadow .22s ease, border-color .22s;
+}
+.product-card:hover{ transform:translateY(-7px); box-shadow:var(--shadow); border-color: transparent; }
+.pc-img{
+  aspect-ratio:1/1; display:grid; place-items:center; position:relative; overflow:hidden;
+}
+.pc-img .p-icon{ width:58%; height:58%; filter:drop-shadow(0 10px 14px rgba(0,0,0,.14)); }
+.pc-badges{ position:absolute; top:12px; left:12px; display:flex; flex-direction:column; gap:.35rem; z-index:2; }
+.pc-tag{
+  font-size:.72rem; font-weight:800; letter-spacing:.04em; padding:.28rem .65rem; border-radius:999px;
+  color:#fff; text-transform:uppercase; width:max-content; box-shadow:0 4px 10px rgba(0,0,0,.18);
+}
+.pc-tag.promo{ background:var(--primary); }
+.pc-tag.new{ background:var(--green); }
+.pc-tag.best{ background:#7c3aed; }
+.pc-fav{
+  position:absolute; top:10px; right:10px; z-index:2; width:38px; height:38px; border-radius:12px;
+  background:rgba(255,255,255,.9); display:grid; place-items:center; color:#8b90a0;
+  transition:all .18s; box-shadow:var(--shadow-sm);
+}
+[data-theme="dark"] .pc-fav{ background:rgba(30,34,48,.9); }
+.pc-fav:hover{ color:var(--primary); transform:scale(1.1); }
+.pc-fav.active{ color:var(--primary); }
+.pc-fav.active svg path{ fill:var(--primary); stroke:var(--primary); }
+.pc-body{ padding:1rem 1.1rem 1.2rem; display:flex; flex-direction:column; gap:.4rem; flex:1; }
+.pc-cat{ font-size:.76rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); }
+.pc-name{ font-weight:700; font-size:1.02rem; line-height:1.35; }
+.pc-rating{ display:flex; align-items:center; gap:.4rem; font-size:.85rem; color:var(--muted); }
+.stars{ color:var(--gold); letter-spacing:1px; font-size:.9rem; }
+.stars .off{ opacity:.28; }
+.pc-price-row{ display:flex; align-items:center; justify-content:space-between; margin-top:auto; padding-top:.55rem; }
+.price{ font-weight:800; font-size:1.12rem; letter-spacing:-.01em; }
+.price .old{ color:var(--muted); text-decoration:line-through; font-weight:600; font-size:.86rem; margin-left:.45rem; }
+.pc-add{
+  width:42px; height:42px; border-radius:13px; display:grid; place-items:center; color:#fff;
+  background:linear-gradient(135deg,var(--primary),var(--primary-600));
+  box-shadow:0 8px 18px rgba(255,90,44,.35); transition:all .18s;
+}
+.pc-add:hover{ transform:scale(1.12) rotate(-6deg); }
+.empty-state{
+  grid-column:1/-1; text-align:center; padding:4rem 1rem; color:var(--muted);
+}
+.empty-state .ic{ width:54px; height:54px; margin:0 auto 1rem; opacity:.4; }
+
+/* ==========================================================================
+   9. AVANTAGES
+   ========================================================================== */
+.adv-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:1.2rem; }
+.adv-card{
+  background:var(--surface); border:1.5px solid var(--border); border-radius:var(--radius);
+  padding:1.6rem 1.4rem; transition:all .2s;
+}
+.adv-card:hover{ transform:translateY(-5px); border-color:var(--primary); box-shadow:var(--shadow); }
+.adv-ico{
+  width:52px; height:52px; border-radius:16px; display:grid; place-items:center; margin-bottom:1rem;
+  background:var(--primary-soft); color:var(--primary);
+}
+.adv-card h3{ font-size:1.05rem; margin-bottom:.35rem; }
+.adv-card p{ color:var(--muted); font-size:.92rem; }
+
+/* ==========================================================================
+   10. TÉMOIGNAGES
+   ========================================================================== */
+.testi-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.2rem; }
+.testi-card{
+  background:var(--surface); border:1.5px solid var(--border); border-radius:var(--radius);
+  padding:1.6rem 1.5rem; position:relative;
+}
+.testi-card .quote{
+  font-size:3.4rem; font-weight:900; line-height:1; color:var(--primary); opacity:.18;
+  position:absolute; top:1rem; right:1.4rem;
+}
+.testi-card p{ font-size:.96rem; color:var(--muted); }
+.testi-user{ display:flex; align-items:center; gap:.8rem; margin-top:1.2rem; }
+.avatar{
+  width:46px; height:46px; border-radius:50%; display:grid; place-items:center;
+  color:#fff; font-weight:800; font-size:.95rem; flex:none;
+}
+.testi-user b{ display:block; font-size:.95rem; }
+.testi-user span{ font-size:.8rem; color:var(--muted); }
+
+/* ==========================================================================
+   11. NEWSLETTER
+   ========================================================================== */
+.newsletter-card{
+  border-radius:26px; padding:3rem 2.4rem; text-align:center; position:relative; overflow:hidden;
+  background:linear-gradient(135deg, var(--primary), #ff8a5c); color:#fff;
+}
+.newsletter-card::before{
+  content:""; position:absolute; right:-60px; top:-60px; width:220px; height:220px; border-radius:50%;
+  background:rgba(255,255,255,.14);
+}
+.newsletter-card::after{
+  content:""; position:absolute; left:-40px; bottom:-90px; width:180px; height:180px; border-radius:50%;
+  border:3px dashed rgba(255,255,255,.3);
+}
+.newsletter-card h2{ font-size:clamp(1.5rem,3vw,2.1rem); letter-spacing:-.02em; }
+.newsletter-card p{ opacity:.92; margin:.5rem auto 1.6rem; max-width:34rem; }
+.nl-form{
+  display:flex; gap:.5rem; max-width:30rem; margin:0 auto; background:#fff; border-radius:999px;
+  padding:.4rem; position:relative; z-index:1;
+}
+.nl-form input{ flex:1; border:none; outline:none; background:none; padding:.6rem 1.1rem; color:#151824; min-width:0; }
+.nl-form button{ flex:none; }
+
+/* ==========================================================================
+   12. FOOTER
+   ========================================================================== */
+footer{ background:#101321; color:#b7bccd; padding:3.6rem 0 0; margin-top:2rem; }
+[data-theme="dark"] footer{ background:#0a0c12; }
+.foot-grid{ display:grid; grid-template-columns:1.5fr 1fr 1fr 1.3fr; gap:2.2rem; padding-bottom:2.6rem; }
+.foot-grid h4{ color:#fff; font-size:1rem; margin-bottom:1rem; }
+.foot-grid ul{ display:flex; flex-direction:column; gap:.55rem; font-size:.93rem; }
+.foot-grid ul a{ transition:color .15s; }
+.foot-grid ul a:hover{ color:var(--primary); }
+.foot-brand p{ font-size:.93rem; margin:1rem 0 1.2rem; max-width:24rem; }
+.foot-brand .logo{ color:#fff; }
+.socials{ display:flex; gap:.6rem; }
+.socials a{
+  width:40px; height:40px; border-radius:12px; display:grid; place-items:center;
+  background:rgba(255,255,255,.08); transition:all .18s;
+}
+.socials a:hover{ background:var(--primary); color:#fff; transform:translateY(-3px); }
+.foot-contact li{ display:flex; gap:.7rem; align-items:flex-start; }
+.foot-contact .ic{ margin-top:.25rem; color:var(--primary); }
+.foot-bottom{
+  border-top:1px solid rgba(255,255,255,.09); padding:1.3rem 0; display:flex; align-items:center;
+  justify-content:space-between; gap:1rem; flex-wrap:wrap; font-size:.85rem;
+}
+.pay-chips{ display:flex; gap:.5rem; flex-wrap:wrap; }
+.pay-chip{
+  background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12);
+  padding:.3rem .8rem; border-radius:8px; font-size:.78rem; font-weight:700; letter-spacing:.02em;
+}
+
+/* ==========================================================================
+   13. PANIER (tiroir)
+   ========================================================================== */
+.overlay{
+  position:fixed; inset:0; background:rgba(10,12,20,.55); backdrop-filter:blur(3px);
+  opacity:0; pointer-events:none; transition:opacity .28s; z-index:80;
+}
+.overlay.show{ opacity:1; pointer-events:auto; }
+.cart-drawer{
+  position:fixed; top:0; right:0; bottom:0; width:min(420px,100vw); z-index:90;
+  background:var(--surface); box-shadow:-20px 0 60px rgba(0,0,0,.25);
+  transform:translateX(105%); transition:transform .32s cubic-bezier(.22,.8,.3,1);
+  display:flex; flex-direction:column;
+}
+.cart-drawer.open{ transform:translateX(0); }
+.cd-head{
+  padding:1.2rem 1.4rem; border-bottom:1px solid var(--border);
+  display:flex; align-items:center; justify-content:space-between;
+}
+.cd-head h3{ display:flex; align-items:center; gap:.6rem; font-size:1.15rem; }
+.cd-items{ flex:1; overflow-y:auto; padding:1rem 1.4rem; display:flex; flex-direction:column; gap:.9rem; }
+.cart-empty{ margin:auto; text-align:center; color:var(--muted); }
+.cart-empty .ic{ width:60px; height:60px; margin:0 auto 1rem; opacity:.35; }
+.cart-item{
+  display:flex; gap:.9rem; border:1.5px solid var(--border); border-radius:16px; padding:.7rem;
+  background:var(--surface-2);
+}
+.ci-img{
+  width:76px; height:76px; border-radius:12px; display:grid; place-items:center; flex:none;
+}
+.ci-img svg{ width:70%; height:70%; }
+.ci-info{ flex:1; min-width:0; }
+.ci-info b{ font-size:.92rem; display:block; line-height:1.3; }
+.ci-info .ci-price{ color:var(--primary); font-weight:800; font-size:.92rem; }
+.qty{ display:inline-flex; align-items:center; gap:.15rem; margin-top:.45rem; background:var(--surface); border:1.5px solid var(--border); border-radius:999px; padding:.15rem; }
+.qty button{ width:28px; height:28px; border-radius:50%; display:grid; place-items:center; transition:background .15s; }
+.qty button:hover{ background:var(--primary); color:#fff; }
+.qty span{ min-width:26px; text-align:center; font-weight:800; font-size:.92rem; }
+.ci-remove{ color:var(--muted); align-self:flex-start; transition:color .15s; }
+.ci-remove:hover{ color:#e0245e; }
+.cd-foot{ border-top:1px solid var(--border); padding:1.1rem 1.4rem 1.3rem; }
+.free-ship{ background:var(--green-soft); color:var(--green); border-radius:12px; padding:.6rem .9rem; font-size:.84rem; font-weight:700; margin-bottom:.9rem; }
+.free-ship .bar{ height:7px; background:rgba(15,157,88,.18); border-radius:99px; margin-top:.45rem; overflow:hidden; }
+.free-ship .bar i{ display:block; height:100%; background:var(--green); border-radius:99px; transition:width .4s ease; }
+.cd-totals{ display:flex; flex-direction:column; gap:.35rem; font-size:.95rem; margin-bottom:1rem; }
+.cd-totals .row{ display:flex; justify-content:space-between; color:var(--muted); }
+.cd-totals .row.total{ color:var(--text); font-weight:800; font-size:1.1rem; }
+.cd-totals .row.total span:last-child{ color:var(--primary); }
+
+/* ==========================================================================
+   14. MODALES
+   ========================================================================== */
+.modal{
+  position:fixed; inset:0; z-index:100; display:grid; place-items:center; padding:1.2rem;
+  visibility:hidden; opacity:0; transition:opacity .25s;
+}
+.modal.show{ visibility:visible; opacity:1; }
+.modal .modal-bg{ position:absolute; inset:0; background:rgba(10,12,20,.6); backdrop-filter:blur(4px); }
+.modal-card{
+  position:relative; background:var(--surface); border-radius:24px; width:min(560px,100%);
+  max-height:92vh; overflow-y:auto; box-shadow:var(--shadow);
+  transform:translateY(18px) scale(.98); transition:transform .28s cubic-bezier(.22,.8,.3,1);
+}
+.modal.show .modal-card{ transform:none; }
+.modal-close{
+  position:absolute; top:14px; right:14px; width:40px; height:40px; border-radius:12px;
+  background:var(--surface-2); display:grid; place-items:center; z-index:5; transition:all .15s;
+}
+.modal-close:hover{ background:var(--primary); color:#fff; transform:rotate(90deg); }
+
+/* Quick view */
+.qv-grid{ display:grid; grid-template-columns:1fr 1fr; }
+.qv-media{ display:grid; place-items:center; min-height:300px; }
+.qv-media svg{ width:56%; height:56%; filter:drop-shadow(0 14px 20px rgba(0,0,0,.15)); }
+.qv-info{ padding:2rem 1.6rem; display:flex; flex-direction:column; gap:.6rem; }
+.qv-info .pc-name{ font-size:1.3rem; }
+.qv-price{ font-size:1.45rem; }
+.qv-desc{ color:var(--muted); font-size:.93rem; }
+.qv-actions{ display:flex; gap:.6rem; margin-top:1rem; align-items:center; flex-wrap:wrap; }
+
+/* Checkout */
+.co-body{ padding:1.8rem 1.7rem; }
+.co-body h3{ font-size:1.3rem; margin-bottom:1.2rem; display:flex; align-items:center; gap:.6rem; }
+.f-row{ display:grid; grid-template-columns:1fr 1fr; gap:.9rem; }
+.f-group{ margin-bottom:.9rem; }
+.f-group label{ display:block; font-weight:700; font-size:.86rem; margin-bottom:.35rem; }
+.f-group input, .f-group select, .f-group textarea{
+  width:100%; padding:.72rem 1rem; border-radius:12px; border:1.5px solid var(--border);
+  background:var(--surface-2); outline:none; transition:border-color .15s, box-shadow .15s;
+  resize:vertical;
+}
+.f-group input:focus, .f-group select:focus, .f-group textarea:focus{
+  border-color:var(--primary); box-shadow:0 0 0 4px rgba(255,90,44,.12);
+}
+.pay-opts{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:.6rem; margin-top:.4rem; }
+.pay-opt{ position:relative; }
+.pay-opt input{ position:absolute; opacity:0; }
+.pay-opt span{
+  display:flex; flex-direction:column; gap:.2rem; align-items:center; text-align:center;
+  border:1.5px solid var(--border); border-radius:14px; padding:.8rem .5rem; font-size:.85rem; font-weight:700;
+  cursor:pointer; transition:all .15s; background:var(--surface-2);
+}
+.pay-opt input:checked + span{ border-color:var(--primary); background:var(--primary-soft); color:var(--primary); }
+.pay-opt small{ font-weight:600; opacity:.7; }
+.co-summary{ background:var(--surface-2); border-radius:14px; padding:1rem 1.2rem; margin-bottom:1.2rem; font-size:.92rem; }
+.co-summary .row{ display:flex; justify-content:space-between; padding:.18rem 0; color:var(--muted); }
+.co-summary .row.total{ color:var(--text); font-weight:800; font-size:1.05rem; border-top:1px dashed var(--border); margin-top:.4rem; padding-top:.55rem; }
+.co-summary .row.total span:last-child{ color:var(--primary); }
+
+/* Success */
+.success-body{ padding:3rem 2rem; text-align:center; }
+.success-check{
+  width:88px; height:88px; border-radius:50%; margin:0 auto 1.4rem; display:grid; place-items:center;
+  background:var(--green-soft); color:var(--green); animation:pop .5s cubic-bezier(.22,1.4,.4,1);
+}
+@keyframes pop{ from{ transform:scale(.4); opacity:0; } }
+.success-body h3{ font-size:1.5rem; margin-bottom:.5rem; }
+.success-body p{ color:var(--muted); max-width:26rem; margin:0 auto 1.4rem; }
+.order-ref{ display:inline-block; background:var(--surface-2); border:1.5px dashed var(--border); border-radius:12px; padding:.6rem 1.3rem; font-weight:800; letter-spacing:.06em; margin-bottom:1.4rem; }
+
+/* ==========================================================================
+   15. DIVERS : TOAST, WHATSAPP, ANIMATIONS
+   ========================================================================== */
+.toast{
+  position:fixed; bottom:24px; left:50%; transform:translate(-50%,140%); z-index:120;
+  background:var(--text); color:var(--bg); font-weight:700; font-size:.92rem;
+  padding:.85rem 1.4rem; border-radius:999px; display:flex; align-items:center; gap:.6rem;
+  box-shadow:var(--shadow); transition:transform .35s cubic-bezier(.22,.9,.3,1.2);
+  max-width:92vw;
+}
+.toast.show{ transform:translate(-50%,0); }
+.toast .ic{ color:var(--green); }
+
+.whatsapp-float{
+  position:fixed; left:20px; bottom:20px; z-index:75; width:56px; height:56px; border-radius:50%;
+  background:#25d366; color:#fff; display:grid; place-items:center;
+  box-shadow:0 12px 28px rgba(37,211,102,.45); transition:transform .2s;
+}
+.whatsapp-float:hover{ transform:scale(1.1) rotate(8deg); }
+
+.reveal{ opacity:0; transform:translateY(26px); transition:opacity .6s ease, transform .6s ease; }
+.reveal.visible{ opacity:1; transform:none; }
+
+/* ==========================================================================
+   16. RESPONSIVE
+   ========================================================================== */
+@media (max-width:1024px){
+  .hero-grid{ grid-template-columns:1fr; gap:2.4rem; }
+  .hero-art-wrap{ max-width:520px; margin:0 auto; }
+  .foot-grid{ grid-template-columns:1fr 1fr; }
+}
+@media (max-width:860px){
+  .nav-desktop, .header-search{ display:none; }
+  .burger{ display:grid; }
+  .tb-extra{ display:none; }
+  .shop-toolbar{ flex-direction:column; align-items:stretch; }
+  .shop-toolbar .spacer{ display:none; }
+}
+@media (max-width:640px){
+  .hero{ padding:2.6rem 0 2rem; }
+  .qv-grid{ grid-template-columns:1fr; }
+  .qv-media{ min-height:230px; }
+  .promo-banner{ padding:2rem 1.5rem; }
+  .prod-grid{ grid-template-columns:repeat(auto-fill, minmax(160px,1fr)); gap: .9rem; }
+  .pc-body{ padding:.8rem .85rem 1rem; }
+  .pc-name{ font-size:.92rem; }
+  .price{ font-size:.98rem; }
+  .pc-add{ width:37px; height:37px; }
+  .foot-grid{ grid-template-columns:1fr; gap:1.6rem; }
+  .hero-stats{ gap:1.4rem; }
+  .f-row{ grid-template-columns:1fr; }
+  .nl-form{ flex-direction:column; border-radius:22px; }
+  .nl-form input{ text-align:center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== SVG SYMBOLS (icônes) ===================== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- Produits (viewBox 120) -->
+    <symbol id="i-headphones" viewBox="0 0 120 120">
+      <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M26 64v-6a34 34 0 0 1 68 0v6"/>
+        <rect x="17" y="60" width="19" height="30" rx="9"/>
+        <rect x="84" y="60" width="19" height="30" rx="9"/>
+        <path d="M93 90v5a7 7 0 0 1-7 7H73"/>
+      </g>
+    </symbol>
+    <symbol id="i-watch" viewBox="0 0 120 120">
+      <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M47 30 45 10h30l-2 20"/>
+        <path d="M47 90l-2 20h30l-2-20"/>
+        <rect x="41" y="30" width="38" height="60" rx="15"/>
+        <circle cx="60" cy="60" r="17"/>
+        <path d="M60 51v9l7 5"/>
+      </g>
+    </symbol>
+    <symbol id="i-phone" viewBox="0 0 120 120">
+      <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="40" y="14" width="40" height="92" rx="12"/>
+        <path d="M53 95h14"/>
+        <path d="M56 24h8"/>
+      </g>
+    </symbol>
+    <symbol id="i-speaker" viewBox="0 0 120 120">
+      <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="34" y="16" width="52" height="86" rx="15"/>
+        <circle cx="60" cy="74" r="15"/>
+        <circle cx="60" cy="41" r="7"/>
+      </g>
+    </symbol>
+    <symbol id="i-sneakers" viewBox="0 0 120 120">
+      <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M16 76c2-8 9-12 17-14l26-8c8-2 13 3 13 11l18 5c8 2 15 6 15 13v1H16z"/>
+        <path d="M43 63l30-9"/>
+        <path d="M48 58l7-2M56 62l7-2M64 66l7-2"/>
+        <path d="M16 82h89v5c-30 5-59 5-89 0z"/>
+      </g>
+    </symbol>
+    <symbol id="i-bag" viewBox="0 0 120 120">
+      <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M34 50h52l6 42H28z"/>
+        <path d="M46 50v-9a14 14 0 0 1 28 0v9"/>
+        <circle cx="60" cy="68" r="4.5"/>
+        <path d="M28 92l6 10h52l6-10" opacity="0"/>
+        <path d="M34 50 28 92"/> <path d="M86 50l6 42"/>
+      </g>
+    </symbol>
+    <symbol id="i-tshirt" viewBox="0 0 120 120">
+      <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M44 23 22 33l10 21 10-6v50h36V48l10 6 10-21-22-10c-2 7-8 9-16 9s-14-2-16-9z"/>
+        <path d="M44 23c2 6 8 9 16 9s14-3 16-9"/>
+      </g>
+    </symbol>
+    <symbol id="i-glasses" viewBox="0 0 120 120">
+      <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="16" y="52" width="36" height="24" rx="11"/>
+        <rect x="68" y="52" width="36" height="24" rx="11"/>
+        <path d="M52 60c3-5 13-5 16 0"/>
+        <path d="M16 58 8 50M104 58l8-8"/>
+      </g>
+    </symbol>
+    <symbol id="i-lamp" viewBox="0 0 120 120">
+      <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M38 46h44l-10-22H48z"/>
+        <path d="M60 46v40"/>
+        <path d="M44 96c10 4 22 4 32 0"/>
+        <circle cx="60" cy="54" r="6"/>
+        <path d="M74 30l10-8M76 40l12-5M44 30l-10-8M42 40l-12-5"/>
+      </g>
+    </symbol>
+    <symbol id="i-blender" viewBox="0 0 120 120">
+      <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M42 16h38l5 50H37z"/>
+        <path d="M40 50h42"/>
+        <path d="M80 20h14v12"/>
+        <rect x="29" y="66" width="62" height="26" rx="9"/>
+        <circle cx="43" cy="79" r="3.5"/><circle cx="56" cy="79" r="3.5"/><circle cx="69" cy="79" r="3.5"/>
+      </g>
+    </symbol>
+    <symbol id="i-perfume" viewBox="0 0 120 120">
+      <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="42" y="40" width="36" height="56" rx="11"/>
+        <rect x="51" y="18" width="18" height="15" rx="4"/>
+        <path d="M69 25h15"/>
+        <path d="M84 25v10"/>
+        <path d="M52 60h16"/>
+      </g>
+    </symbol>
+    <symbol id="i-backpack" viewBox="0 0 120 120">
+      <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M38 48c0-13 9-21 22-21s22 8 22 21v46H38z"/>
+        <path d="M52 27c1-8 15-8 16 0"/>
+        <rect x="46" y="58" width="28" height="19" rx="8"/>
+        <path d="M40 50 30 62M80 50l10 12"/>
+      </g>
+    </symbol>
+    <!-- Interface (viewBox 24) -->
+    <symbol id="ui-cart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.4"/><circle cx="19" cy="21" r="1.4"/><path d="M2 3h3l2.6 12.5a2 2 0 0 0 2 1.5h8.7a2 2 0 0 0 2-1.6L22 8H6"/></g></symbol>
+    <symbol id="ui-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20.5 20.5-4.3-4.3"/></g></symbol>
+    <symbol id="ui-user" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c1.2-3.6 4-5.5 7.5-5.5s6.3 1.9 7.5 5.5"/></g></symbol>
+    <symbol id="ui-heart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5S3.5 15.5 3.5 9.6A4.6 4.6 0 0 1 8.1 5c1.6 0 3.1.8 3.9 2 0.8-1.2 2.3-2 3.9-2a4.6 4.6 0 0 1 4.6 4.6c0 5.9-8.5 10.9-8.5 10.9z"/></g></symbol>
+    <symbol id="ui-star" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></symbol>
+    <symbol id="ui-menu" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3.5 6.5h17M3.5 12h17M3.5 17.5h17"/></g></symbol>
+    <symbol id="ui-x" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></g></symbol>
+    <symbol id="ui-plus" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 4.5v15M4.5 12h15"/></g></symbol>
+    <symbol id="ui-minus" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4.5 12h15"/></g></symbol>
+    <symbol id="ui-trash" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6.5h16M9.5 6.5V4.8A1.3 1.3 0 0 1 10.8 3.5h2.4a1.3 1.3 0 0 1 1.3 1.3v1.7M6.5 6.5l1 13a1.5 1.5 0 0 0 1.5 1.4h6a1.5 1.5 0 0 0 1.5-1.4l1-13"/><path d="M10 10.5v6M14 10.5v6"/></g></symbol>
+    <symbol id="ui-truck" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 5.5h13v11h-13zM14.5 9.5h4l3.5 3.5v3.5h-7.5z"/><circle cx="6" cy="18.5" r="2"/><circle cx="17.5" cy="18.5" r="2"/></g></symbol>
+    <symbol id="ui-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.8 4.5 5.6v6.1c0 4.6 3.2 7.7 7.5 9.5 4.3-1.8 7.5-4.9 7.5-9.5V5.6z"/><path d="m8.8 11.6 2.3 2.3 4.2-4.3"/></g></symbol>
+    <symbol id="ui-refresh" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11.5A8 8 0 0 0 5.6 7.2L4 9M4 12.5A8 8 0 0 0 18.4 16.8L20 15"/><path d="M4 4v5h5M20 20v-5h-5"/></g></symbol>
+    <symbol id="ui-headset" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 13.5v-2a8.5 8.5 0 0 1 17 0v2"/><path d="M3.5 13.5a1.8 1.8 0 0 1 1.8-1.8h.9a1.8 1.8 0 0 1 1.8 1.8v4.2a1.8 1.8 0 0 1-1.8 1.8h-.9a1.8 1.8 0 0 1-1.8-1.8zM20.5 13.5a1.8 1.8 0 0 0-1.8-1.8h-.9a1.8 1.8 0 0 0-1.8 1.8v4.2a1.8 1.8 0 0 0 1.8 1.8h.9a1.8 1.8 0 0 0 1.8-1.8z"/><path d="M20.5 18.4c0 2.1-1.7 3.3-4.5 3.3"/></g></symbol>
+    <symbol id="ui-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></g></symbol>
+    <symbol id="ui-phone" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3.5h3.5l1.7 4.5-2.2 1.7a12.8 12.8 0 0 0 5.8 5.8l1.7-2.2 4.5 1.7V18.5A2 2 0 0 1 18 20.5C10 20 3.5 13.5 3.5 6a2 2 0 0 1 1.5-2.5z"/></g></symbol>
+    <symbol id="ui-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.5S5 14.8 5 10a7 7 0 0 1 14 0c0 4.8-7 11.5-7 11.5z"/><circle cx="12" cy="10" r="2.6"/></g></symbol>
+    <symbol id="ui-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></g></symbol>
+    <symbol id="ui-check" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m4.5 12.5 5 5L19.5 7"/></g></symbol>
+    <symbol id="ui-arrow" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13.5 5.5 20 12l-6.5 6.5"/></g></symbol>
+    <symbol id="ui-sun" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5 5l1.7 1.7M17.3 17.3 19 19M19 5l-1.7 1.7M6.7 17.3 5 19"/></g></symbol>
+    <symbol id="ui-moon" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></g></symbol>
+    <symbol id="ui-wa" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2a8.8 8.8 0 0 0-7.6 13.2L3 21l4.7-1.3A8.8 8.8 0 1 0 12 3.2z"/><path d="M9 8.8c.3 2.9 3.3 5.9 6.2 6.2l1.2-1.2c.3-.3.2-.8-.2-1l-1.6-.7c-.3-.1-.6 0-.8.2l-.5.5c-1-.4-2-1.4-2.4-2.4l.5-.5c.2-.2.3-.5.2-.8l-.7-1.6c-.2-.4-.7-.5-1-.2z"/></g></symbol>
+    <symbol id="ui-gift" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="8" width="17" height="4.4" rx="1"/><path d="M5 12.4V19a1.5 1.5 0 0 0 1.5 1.5h11A1.5 1.5 0 0 0 19 19v-6.6M12 8v12.5M12 8s-4.6.2-5.6-2c-.8-1.8 1.6-3.6 3.1-2.4C10.7 4.7 12 8 12 8zM12 8s4.6.2 5.6-2c.8-1.8-1.6-3.6-3.1-2.4C13.3 4.7 12 8 12 8z"/></g></symbol>
+  </defs>
+</svg>
+
+<!-- ===================== TOPBAR ===================== -->
+<div class="topbar">
+  <div class="container topbar-inner">
+    <div class="tb-content">
+      <span><svg class="ic"><use href="#ui-truck"/></svg> Livraison <b>gratuite</b> dès 50 000 FCFA à N'Djamena</span>
+      <span class="tb-extra"><svg class="ic"><use href="#ui-check"/></svg> Paiement à la livraison disponible</span>
+    </div>
+    <div class="tb-content tb-extra">
+      <span><svg class="ic"><use href="#ui-phone"/></svg> +235 66 00 00 00</span>
+      <a href="#contact"><svg class="ic"><use href="#ui-pin"/></svg> N'Djamena, Tchad</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== HEADER ===================== -->
+<header class="header">
+  <div class="container header-inner">
+    <a href="#accueil" class="logo" aria-label="SahelShop — accueil">
+      <span class="logo-badge"><svg class="ic ic-lg"><use href="#ui-cart"/></svg></span>
+      Sahel<em>Shop</em>
+    </a>
+
+    <nav class="nav-desktop" aria-label="Navigation principale">
+      <a href="#accueil" class="active">Accueil</a>
+      <a href="#boutique">Boutique</a>
+      <a href="#categories">Catégories</a>
+      <a href="#promo">Promotions</a>
+      <a href="#avantages">Services</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-btn" id="themeBtn" aria-label="Changer de thème" title="Mode clair / sombre">
+        <svg class="ic" id="themeIcon"><use href="#ui-moon"/></svg>
+      </button>
+      <button class="icon-btn" aria-label="Mon compte" title="Mon compte">
+        <svg class="ic"><use href="#ui-user"/></svg>
+      </button>
+      <button class="icon-btn" id="cartBtn" aria-label="Ouvrir le panier" title="Panier">
+        <svg class="ic"><use href="#ui-cart"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button class="icon-btn burger" id="burgerBtn" aria-label="Menu" aria-expanded="false">
+        <svg class="ic"><use href="#ui-menu"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Menu mobile -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Menu">
+  <div class="container mm-head">
+    <a href="#accueil" class="logo"><span class="logo-badge"><svg class="ic ic-lg"><use href="#ui-cart"/></svg></span>Sahel<em>Shop</em></a>
+    <button class="icon-btn" id="mmClose" aria-label="Fermer le menu"><svg class="ic"><use href="#ui-x"/></svg></button>
+  </div>
+  <nav class="container">
+    <a href="#accueil"><svg class="ic"><use href="#ui-arrow"/></svg> Accueil</a>
+    <a href="#boutique"><svg class="ic"><use href="#ui-arrow"/></svg> Boutique</a>
+    <a href="#categories"><svg class="ic"><use href="#ui-arrow"/></svg> Catégories</a>
+    <a href="#promo"><svg class="ic"><use href="#ui-arrow"/></svg> Promotions</a>
+    <a href="#avantages"><svg class="ic"><use href="#ui-arrow"/></svg> Services</a>
+    <a href="#contact"><svg class="ic"><use href="#ui-arrow"/></svg> Contact</a>
+  </nav>
+</div>
+
+<main>
+  <!-- ===================== HERO ===================== -->
+  <section id="accueil" class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="badge-pill">🇹🇩 Boutique n°1 à N'Djamena</span>
+        <h1>Tout ce qu'il vous faut, <span class="grad-text">livré chez vous.</span></h1>
+        <p class="lead">Électronique, mode, maison, beauté… Découvrez notre sélection de produits de qualité au meilleur prix, avec paiement Mobile Money et livraison rapide partout au Tchad.</p>
+
+        <form class="hero-search" id="heroSearch">
+          <svg class="ic" style="color:var(--muted)"><use href="#ui-search"/></svg>
+          <input type="search" id="searchInput" placeholder="Rechercher un produit… (ex : casque, montre, sac)" aria-label="Rechercher un produit">
+          <button type="submit" class="btn btn-primary btn-sm">Rechercher</button>
+        </form>
+
+        <div class="hero-stats">
+          <div class="stat"><b>2 500+</b><span>Clients satisfaits</span></div>
+          <div class="stat"><b>290+</b><span>Produits en stock</span></div>
+          <div class="stat"><b>24–72 h</b><span>Délai de livraison</span></div>
+        </div>
+      </div>
+
+      <div class="hero-art-wrap">
+        <svg class="hero-art" viewBox="0 0 520 440" role="img" aria-label="Illustration boutique en ligne">
+          <defs>
+            <linearGradient id="hg1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#ffef9a"/><stop offset="1" stop-color="#ffc36b"/>
+            </linearGradient>
+            <linearGradient id="hg2" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#c7d2ff"/><stop offset="1" stop-color="#93a4ff"/>
+            </linearGradient>
+            <linearGradient id="hg3" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#ffd0dd"/><stop offset="1" stop-color="#ff9db9"/>
+            </linearGradient>
+            <linearGradient id="hg4" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#b8f2d8"/><stop offset="1" stop-color="#6fe0ad"/>
+            </linearGradient>
+          </defs>
+
+          <ellipse cx="265" cy="225" rx="215" ry="185" fill="var(--primary)" opacity=".07"/>
+
+          <!-- Carte centrale -->
+          <g>
+            <rect x="185" y="85" width="160" height="240" rx="26" fill="var(--surface)" stroke="var(--border)" stroke-width="2"/>
+            <rect x="205" y="105" width="120" height="104" rx="18" fill="var(--primary-soft)"/>
+            <g style="color:var(--primary)" transform="translate(225,121)">
+              <svg x="0" y="0" width="80" height="80" viewBox="0 0 120 120"><use href="#i-bag"/></svg>
+            </g>
+            <text x="208" y="238" font-family="var(--font)" font-size="19" font-weight="800" fill="var(--text)">SahelShop ✓</text>
+            <rect x="208" y="252" width="112" height="30" rx="10" fill="var(--surface-2)"/>
+            <circle cx="224" cy="267" r="7" fill="var(--green)"/>
+            <text x="239" y="272" font-family="var(--font)" font-size="12" font-weight="700" fill="var(--muted)">Commande validée</text>
+            <rect x="208" y="292" width="64" height="18" rx="9" fill="var(--primary)"/>
+            <text x="218" y="305" font-family="var(--font)" font-size="10" font-weight="800" fill="#fff">EN LIGNE</text>
+          </g>
+
+          <!-- Tuiles flottantes -->
+          <g class="float-tile">
+            <rect x="36" y="52" width="118" height="86" rx="20" fill="var(--surface)" stroke="var(--border)" stroke-width="2" transform="rotate(-8 95 95)"/>
+            <g style="color:#6366f1" transform="translate(56,62) rotate(-8 95 95)">
+              <svg width="52" height="52" viewBox="0 0 120 120"><use href="#i-headphones"/></svg>
+            </g>
+            <text x="118" y="122" font-family="var(--font)" font-size="11" font-weight="700" fill="var(--muted)" transform="rotate(-8 95 95)">Casque Pro</text>
+          </g>
+
+          <g class="float-tile d2">
+            <rect x="352" y="40" width="118" height="86" rx="20" fill="var(--surface)" stroke="var(--border)" stroke-width="2" transform="rotate(7 411 83)"/>
+            <g style="color:#ec4899" transform="translate(374,50) rotate(7 411 83)">
+              <svg width="50" height="50" viewBox="0 0 120 120"><use href="#i-sneakers"/></svg>
+            </g>
+            <text x="430" y="110" font-family="var(--font)" font-size="11" font-weight="700" fill="var(--muted)" transform="rotate(7 411 83)">Urban Runner</text>
+          </g>
+
+          <g class="float-tile d3">
+            <rect x="30" y="252" width="112" height="84" rx="20" fill="var(--surface)" stroke="var(--border)" stroke-width="2" transform="rotate(-6 86 294)"/>
+            <g style="color:#0d9488" transform="translate(46,262) rotate(-6 86 294)">
+              <svg width="46" height="46" viewBox="0 0 120 120"><use href="#i-watch"/></svg>
+            </g>
+            <text x="104" y="320" font-family="var(--font)" font-size="11" font-weight="700" fill="var(--muted)" transform="rotate(-6 86 294)">Fit+</text>
+          </g>
+
+          <g class="float-tile d2">
+            <rect x="368" y="248" width="112" height="84" rx="20" fill="var(--surface)" stroke="var(--border)" stroke-width="2" transform="rotate(6 424 290)"/>
+            <g style="color:#d946ef" transform="translate(384,258) rotate(6 424 290)">
+              <svg width="46" height="46" viewBox="0 0 120 120"><use href="#i-perfume"/></svg>
+            </g>
+            <text x="440" y="318" font-family="var(--font)" font-size="11" font-weight="700" fill="var(--muted)" transform="rotate(6 424 290)">Oud Royal</text>
+          </g>
+
+          <!-- Badges -->
+          <g class="float-tile d3">
+            <circle cx="330" cy="205" r="27" fill="var(--gold)"/>
+            <text x="330" y="213" text-anchor="middle" font-family="var(--font)" font-size="26" fill="#fff">★</text>
+          </g>
+          <g class="float-tile">
+            <circle cx="196" cy="196" r="23" fill="var(--green)"/>
+            <g style="color:#fff" transform="translate(181,181)"><svg width="30" height="30" viewBox="0 0 24 24"><use href="#ui-truck"/></svg></g>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CATÉGORIES ===================== -->
+  <section id="categories">
+    <div class="container">
+      <div class="sec-head reveal">
+        <span class="kicker">Nos univers</span>
+        <h2>Parcourir par catégorie</h2>
+        <p>Trouvez rapidement ce que vous cherchez parmi nos univers produits.</p>
+      </div>
+      <div class="cat-grid reveal" id="catGrid"><!-- généré en JS --></div>
+    </div>
+  </section>
+
+  <!-- ===================== PROMO ===================== -->
+  <section id="promo">
+    <div class="container">
+      <div class="promo-banner reveal">
+        <div class="promo-txt">
+          <span class="badge-pill" style="background:rgba(255,255,255,.16); color:#fff"><svg class="ic"><use href="#ui-gift"/></svg> SOLDES DE LA SEMAINE</span>
+          <h3 style="margin-top:.8rem">Jusqu'à −30% sur une sélection de produits</h3>
+          <p>Des offres exclusives chaque semaine : électronique, mode et accessoires. Faites vite, les stocks sont limités !</p>
+          <a href="#boutique" class="btn btn-primary" style="margin-top:1.2rem">J'en profite <svg class="ic"><use href="#ui-arrow"/></svg></a>
+        </div>
+        <div class="countdown">
+          <span class="cd-label">Fin des offres dans</span>
+          <div class="cd-boxes">
+            <div class="cd-box"><b id="cdH">00</b><span>Heures</span></div>
+            <div class="cd-box"><b id="cdM">00</b><span>Minutes</span></div>
+            <div class="cd-box"><b id="cdS">00</b><span>Secondes</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== BOUTIQUE ===================== -->
+  <section id="boutique">
+    <div class="container">
+      <div class="sec-head reveal">
+        <span class="kicker">Notre catalogue</span>
+        <h2>Produits populaires</h2>
+        <p>Sélectionnés pour leur qualité et leur rapport qualité-prix.</p>
+      </div>
+
+      <div class="shop-toolbar reveal" id="shopToolbar">
+        <div class="chips" id="catChips" role="tablist" aria-label="Filtrer par catégorie"></div>
+        <span class="spacer"></span>
+        <span class="result-count" id="resultCount"></span>
+        <div class="select-wrap">
+          <select id="sortSelect" aria-label="Trier les produits">
+            <option value="pop">Trier : Populaires</option>
+            <option value="price-asc">Prix croissant</option>
+            <option value="price-desc">Prix décroissant</option>
+            <option value="rating">Meilleures notes</option>
+            <option value="promo">Promotions d'abord</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="prod-grid" id="prodGrid"><!-- généré en JS --></div>
+    </div>
+  </section>
+
+  <!-- ===================== AVANTAGES ===================== -->
+  <section id="avantages">
+    <div class="container">
+      <div class="sec-head reveal">
+        <span class="kicker">Pourquoi nous choisir</span>
+        <h2>Une expérience d'achat simple et sûre</h2>
+      </div>
+      <div class="adv-grid reveal">
+        <div class="adv-card">
+          <div class="adv-ico"><svg class="ic ic-lg"><use href="#ui-truck"/></svg></div>
+          <h3>Livraison rapide</h3>
+          <p>Livraison 24 à 72 h à N'Djamena et dans toutes les grandes villes du Tchad, gratuite dès 50 000 FCFA.</p>
+        </div>
+        <div class="adv-card">
+          <div class="adv-ico"><svg class="ic ic-lg"><use href="#ui-shield"/></svg></div>
+          <h3>Paiement sécurisé</h3>
+          <p>Payez en toute confiance par Orange Money, Airtel Money, Moov Money, carte bancaire ou à la livraison.</p>
+        </div>
+        <div class="adv-card">
+          <div class="adv-ico"><svg class="ic ic-lg"><use href="#ui-refresh"/></svg></div>
+          <h3>Retours faciles</h3>
+          <p>Un produit ne vous convient pas ? Vous disposez de 7 jours pour le retourner, sans justification.</p>
+        </div>
+        <div class="adv-card">
+          <div class="adv-ico"><svg class="ic ic-lg"><use href="#ui-headset"/></svg></div>
+          <h3>Support 7 j/7</h3>
+          <p>Un service client disponible de 8 h à 20 h au +235 60 97 15 58 pour vous accompagner à chaque étape.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== TÉMOIGNAGES ===================== -->
+  <section id="temoignages">
+    <div class="container">
+      <div class="sec-head reveal">
+        <span class="kicker">Avis clients</span>
+        <h2>Ils nous font confiance</h2>
+      </div>
+      <div class="testi-grid reveal">
+        <div class="testi-card">
+          <span class="quote">"</span>
+          <span class="stars">★★★★★</span>
+          <p style="margin-top:.5rem">J'ai commandé un casque Bluetooth un mardi, livré le jeudi matin à mon bureau. Qualité au rendez-vous et paiement Mobile Money très simple. Je recommande vivement !</p>
+          <div class="testi-user">
+            <span class="avatar" style="background:linear-gradient(135deg,#f472b6,#db2777)">AM</span>
+            <div><b>Aïcha Mahamat</b><span>N'Djamena · Cliente fidèle</span></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <span class="quote">"</span>
+          <span class="stars">★★★★★</span>
+          <p style="margin-top:.5rem">Enfin une vraie boutique en ligne tchadienne ! Les prix sont affichés en FCFA, la livraison à Moundou a pris 2 jours. Le service client répond rapidement sur WhatsApp.</p>
+          <div class="testi-user">
+            <span class="avatar" style="background:linear-gradient(135deg,#60a5fa,#4f46e5)">MA</span>
+            <div><b>Moussa Abakar</b><span>Moundou · Client vérifié</span></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <span class="quote">"</span>
+          <span class="stars">★★★★☆</span>
+          <p style="margin-top:.5rem">Très bon rapport qualité-prix sur les articles de maison. J'ai reçu ma lampe LED bien emballée et conforme aux photos. Le suivi de commande est très pratique.</p>
+          <div class="testi-user">
+            <span class="avatar" style="background:linear-gradient(135deg,#34d399,#059669)">FZ</span>
+            <div><b>Fatimé Zara</b><span>Sarh · Cliente vérifiée</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== NEWSLETTER ===================== -->
+  <section id="newsletter">
+    <div class="container">
+      <div class="newsletter-card reveal">
+        <span class="badge-pill" style="background:rgba(255,255,255,.18); color:#fff">📬 Restez informé(e)</span>
+        <h2 style="margin-top:.8rem">Recevez nos offres exclusives</h2>
+        <p>Inscrivez-vous à la newsletter et soyez le premier informé des nouvelles arrivées, promos et codes de réduction.</p>
+        <form class="nl-form" id="nlForm">
+          <input type="email" required placeholder="Votre adresse e-mail" aria-label="Adresse e-mail">
+          <button type="submit" class="btn btn-primary">S'abonner</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer id="contact">
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="#accueil" class="logo"><span class="logo-badge"><svg class="ic ic-lg"><use href="#ui-cart"/></svg></span>Sahel<em>Shop</em></a>
+        <p>La boutique en ligne de référence au Tchad. Des produits authentiques, des prix justes et une livraison rapide partout dans le pays.</p>
+        <div class="socials">
+          <a href="#" aria-label="Facebook"><svg class="ic"><use href="#ui-arrow"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg class="ic"><use href="#ui-arrow"/></svg></a>
+          <a href="#" aria-label="TikTok"><svg class="ic"><use href="#ui-arrow"/></svg></a>
+          <a href="#" aria-label="WhatsApp"><svg class="ic"><use href="#ui-wa"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Boutique</h4>
+        <ul>
+          <li><a href="#boutique" data-cat="Électronique">Électronique</a></li>
+          <li><a href="#boutique" data-cat="Mode">Mode</a></li>
+          <li><a href="#boutique" data-cat="Maison">Maison &amp; Déco</a></li>
+          <li><a href="#boutique" data-cat="Beauté">Beauté &amp; Soins</a></li>
+          <li><a href="#boutique" data-cat="Accessoires">Accessoires</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Informations</h4>
+        <ul>
+          <li><a href="#">Livraison &amp; retours</a></li>
+          <li><a href="#">Suivi de commande</a></li>
+          <li><a href="#">Questions fréquentes</a></li>
+          <li><a href="#">Conditions générales</a></li>
+          <li><a href="#">Politique de confidentialité</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul class="foot-contact">
+          <li><svg class="ic"><use href="#ui-pin"/></svg><span>Avenue Charles de Gaulle,<br>N'Djamena, Tchad</span></li>
+          <li><svg class="ic"><use href="#ui-phone"/></svg><span>+235 66 00 00 00</span></li>
+          <li><svg class="ic"><use href="#ui-mail"/></svg><span>contact@sahelshop.td</span></li>
+          <li><svg class="ic"><use href="#ui-clock"/></svg><span>Lun – Sam : 8 h – 20 h</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 SahelShop — Tous droits réservés.</span>
+      <div class="pay-chips" aria-label="Moyens de paiement acceptés">
+        <span class="pay-chip">Orange Money</span>
+        <span class="pay-chip">Airtel Money</span>
+        <span class="pay-chip">Moov Money</span>
+        <span class="pay-chip">Visa</span>
+        <span class="pay-chip">Mastercard</span>
+        <span class="pay-chip">💵 À la livraison</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Bouton WhatsApp flottant -->
+<a class="whatsapp-float" href="https://wa.me/23566000000" target="_blank" rel="noopener" aria-label="Nous contacter sur WhatsApp" title="WhatsApp">
+  <svg class="ic ic-lg"><use href="#ui-wa"/></svg>
+</a>
+
+<!-- ===================== PANIER ===================== -->
+<div class="overlay" id="cartOverlay"></div>
+<aside class="cart-drawer" id="cartDrawer" aria-label="Panier">
+  <div class="cd-head">
+    <h3><svg class="ic"><use href="#ui-cart"/></svg> Mon panier</h3>
+    <button class="icon-btn" id="cartClose" aria-label="Fermer le panier"><svg class="ic"><use href="#ui-x"/></svg></button>
+  </div>
+  <div class="cd-items" id="cartItems"></div>
+  <div class="cd-foot" id="cartFoot">
+    <div class="free-ship" id="freeShip"></div>
+    <div class="cd-totals">
+      <div class="row"><span>Sous-total</span><span id="subTotal">0 FCFA</span></div>
+      <div class="row"><span>Livraison</span><span id="shipCost">0 FCFA</span></div>
+      <div class="row total"><span>Total</span><span id="grandTotal">0 FCFA</span></div>
+    </div>
+    <button class="btn btn-primary" id="checkoutBtn" style="width:100%">Passer la commande <svg class="ic"><use href="#ui-arrow"/></svg></button>
+  </div>
+</aside>
+
+<!-- ===================== MODALE : APERÇU PRODUIT ===================== -->
+<div class="modal" id="quickModal" role="dialog" aria-modal="true" aria-label="Aperçu du produit">
+  <div class="modal-bg" data-close="quick"></div>
+  <div class="modal-card">
+    <button class="modal-close" data-close="quick" aria-label="Fermer"><svg class="ic"><use href="#ui-x"/></svg></button>
+    <div id="quickContent"></div>
+  </div>
+</div>
+
+<!-- ===================== MODALE : COMMANDE ===================== -->
+<div class="modal" id="checkoutModal" role="dialog" aria-modal="true" aria-label="Finaliser la commande">
+  <div class="modal-bg" data-close="checkout"></div>
+  <div class="modal-card">
+    <button class="modal-close" data-close="checkout" aria-label="Fermer"><svg class="ic"><use href="#ui-x"/></svg></button>
+    <form class="co-body" id="checkoutForm">
+      <h3><svg class="ic"><use href="#ui-truck"/></svg> Informations de livraison</h3>
+
+      <div class="co-summary" id="coSummary"></div>
+
+      <div class="f-row">
+        <div class="f-group">
+          <label for="coName">Nom complet *</label>
+          <input id="coName" type="text" required placeholder="Ex : Aïcha Mahamat">
+        </div>
+        <div class="f-group">
+          <label for="coPhone">Téléphone *</label>
+          <input id="coPhone" type="tel" required placeholder="+235 6X XX XX XX" pattern="[+0-9 ]{8,}">
+        </div>
+      </div>
+      <div class="f-row">
+        <div class="f-group">
+          <label for="coCity">Ville *</label>
+          <select id="coCity" required>
+            <option value="">— Choisir —</option>
+            <option>N'Djamena</option>
+            <option>Moundou</option>
+            <option>Sarh</option>
+            <option>Abéché</option>
+            <option>Kélo</option>
+            <option>Doba</option>
+            <option>Autre ville</option>
+          </select>
+        </div>
+        <div class="f-group">
+          <label for="coAddr">Adresse / quartier *</label>
+          <input id="coAddr" type="text" required placeholder="Ex : Quartier Farcha, rue 1042">
+        </div>
+      </div>
+
+      <div class="f-group">
+        <label>Mode de paiement *</label>
+        <div class="pay-opts">
+          <label class="pay-opt"><input type="radio" name="pay" value="Orange Money" checked><span>🟠 Orange Money<small>Paiement mobile</small></span></label>
+          <label class="pay-opt"><input type="radio" name="pay" value="Airtel Money"><span>🔴 Airtel Money<small>Paiement mobile</small></span></label>
+          <label class="pay-opt"><input type="radio" name="pay" value="Moov Money"><span>🔵 Moov Money<small>Paiement mobile</small></span></label>
+          <label class="pay-opt"><input type="radio" name="pay" value="À la livraison"><span>💵 À la livraison<small>Cash à la réception</small></span></label>
+        </div>
+      </div>
+
+      <div class="f-group">
+        <label for="coNote">Note pour la livraison (optionnel)</label>
+        <textarea id="coNote" rows="2" placeholder="Instructions, préférences de contact…"></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary" style="width:100%">Confirmer la commande 🎉</button>
+    </form>
+  </div>
+</div>
+
+<!-- ===================== MODALE : SUCCÈS ===================== -->
+<div class="modal" id="successModal" role="dialog" aria-modal="true" aria-label="Commande confirmée">
+  <div class="modal-bg" data-close="success"></div>
+  <div class="modal-card">
+    <div class="success-body">
+      <div class="success-check"><svg class="ic" style="width:44px;height:44px"><use href="#ui-check"/></svg></div>
+      <h3>Merci pour votre commande !</h3>
+      <p>Votre commande a bien été enregistrée. Notre équipe vous contactera au téléphone pour confirmer la livraison.</p>
+      <span class="order-ref" id="orderRef">SS-000000</span><br>
+      <p style="font-size:.9rem">📦 Livraison estimée : <b>24 à 72 heures</b></p>
+      <button class="btn btn-primary" data-close="success">Continuer mes achats</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast" role="status"><svg class="ic"><use href="#ui-check"/></svg><span id="toastMsg"></span></div>
+
+<script>
+/* ============================================================
+   SahelShop — logique boutique (JS vanilla)
+   ============================================================ */
+(function(){
+  "use strict";
+
+  /* ---------- Données produits ---------- */
+  var CATS = {
+    "Électronique": { color:"#6366f1", grad:"linear-gradient(135deg,#e7ebff,#d3daff)", icon:"headphones" },
+    "Mode":          { color:"#ec4899", grad:"linear-gradient(135deg,#ffe6f0,#ffd3e3)", icon:"tshirt" },
+    "Maison":        { color:"#0d9488", grad:"linear-gradient(135deg,#dcf7f1,#c8efe6)", icon:"lamp" },
+    "Beauté":        { color:"#d946ef", grad:"linear-gradient(135deg,#f7e6ff,#eed9fb)", icon:"perfume" },
+    "Accessoires":   { color:"#d97706", grad:"linear-gradient(135deg,#fdf0d9,#fbe4bd)", icon:"backpack" }
+  };
+
+  var PRODUCTS = [
+    { id:1, name:"Casque Bluetooth Pro ANC", cat:"Électronique", icon:"headphones", price:24900, old:32000, rating:4.8, reviews:132, badge:"promo", desc:"Casque sans fil à réduction de bruit active (ANC), 40 h d'autonomie, son haute fidélité et micro intégré pour les appels." },
+    { id:2, name:"Montre connectée Fit+", cat:"Électronique", icon:"watch", price:18500, old:null, rating:4.6, reviews:87, badge:"new", desc:"Écran AMOLED, suivi santé (rythme cardiaque, sommeil, pas), notifications d'appels et autonomie de 7 jours." },
+    { id:3, name:"Smartphone Nova 15 · 128 Go", cat:"Électronique", icon:"phone", price:89900, old:105000, rating:4.7, reviews:201, badge:"promo", desc:"Écran 6,7\" 90 Hz, 128 Go de stockage, double SIM 4G, batterie 5000 mAh et charge rapide 33 W." },
+    { id:4, name:"Enceinte SoundBox 20W", cat:"Électronique", icon:"speaker", price:15900, old:null, rating:4.5, reviews:64, badge:null, desc:"Enceinte portable étanche IPX6, 20 W de puissance, Bluetooth 5.3 et 12 h d'autonomie. Idéale en extérieur." },
+    { id:5, name:"Baskets Urban Runner", cat:"Mode", icon:"sneakers", price:27500, old:34000, rating:4.9, reviews:156, badge:"promo", desc:"Baskets légères et respirantes, semelle amortissante, parfaites pour le sport comme pour la ville. Tailles 38 à 45." },
+    { id:6, name:"Sac à main cuir Élégance", cat:"Mode", icon:"bag", price:22000, old:null, rating:4.7, reviews:98, badge:"best", desc:"Sac à main en cuir synthétique premium, doublure textile, plusieurs compartiments et bandoulière amovible." },
+    { id:7, name:"T-shirt premium 100% coton", cat:"Mode", icon:"tshirt", price:6500, old:null, rating:4.4, reviews:312, badge:null, desc:"T-shirt en coton peigné 180 g/m², coupe moderne, lavage facile. Disponible en plusieurs couleurs." },
+    { id:8, name:"Lunettes de soleil Classic", cat:"Mode", icon:"glasses", price:9900, old:12500, rating:4.6, reviews:74, badge:"promo", desc:"Protection UV400, monture légère et résistante, étui rigide et chiffon microfibre inclus." },
+    { id:9, name:"Lampe de chevet LED Luna", cat:"Maison", icon:"lamp", price:12500, old:null, rating:4.8, reviews:52, badge:"new", desc:"Lampe LED tactile à intensité variable, 3 températures de couleur, rechargeable USB — très économe en énergie." },
+    { id:10, name:"Blender multifonction 1,5 L", cat:"Maison", icon:"blender", price:19900, old:25000, rating:4.6, reviews:118, badge:"promo", desc:"Moteur 500 W, bol en verre 1,5 L, 2 vitesses + pulse. Idéal pour jus, smoothies et sauces." },
+    { id:11, name:"Parfum Oud Royal · 100 ml", cat:"Beauté", icon:"perfume", price:16500, old:null, rating:4.9, reviews:143, badge:"best", desc:"Eau de parfum unisexe aux notes d'oud, d'ambre et de vanille. Tenue longue durée, flacon 100 ml." },
+    { id:12, name:"Sac à dos urbain 25 L", cat:"Accessoires", icon:"backpack", price:14500, old:null, rating:4.5, reviews:89, badge:null, desc:"Sac à dos imperméable avec compartiment PC 15,6\", port USB externe, poches multiples et dos respirant." }
+  ];
+
+  var FREE_SHIP = 50000, SHIP_FEE = 2500;
+
+  /* ---------- Helpers ---------- */
+  function $(s,c){ return (c||document).querySelector(s); }
+  function $$(s,c){ return Array.prototype.slice.call((c||document).querySelectorAll(s)); }
+  function fmt(n){ return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g," ") + " FCFA"; }
+  function catMeta(c){ return CATS[c] || { color:"#888", grad:"linear-gradient(135deg,#eee,#ddd)" }; }
+  function discount(p){ return p.old ? Math.round((1 - p.price/p.old)*100) : 0; }
+  function starsHTML(r){
+    var s="", n=Math.round(r);
+    for(var i=0;i<5;i++) s += '<span class="'+(i<n?"":"off")+'">★</span>';
+    return s;
+  }
+  function iconSVG(name, cls){
+    return '<svg class="'+(cls||"ic")+'" aria-hidden="true"><use href="#'+name+'"/></svg>';
+  }
+
+  /* ---------- État ---------- */
+  var cart = {};
+  var store = { ok:false };
+  try { localStorage.setItem("__t","1"); localStorage.removeItem("__t"); store.ok = true; } catch(e){ store.ok = false; }
+  function saveCart(){ if(store.ok) localStorage.setItem("ssCart", JSON.stringify(cart)); }
+  function loadCart(){ if(store.ok){ try{ cart = JSON.parse(localStorage.getItem("ssCart")) || {}; }catch(e){ cart={}; } } }
+
+  var state = { cat:"Tous", q:"", sort:"pop" };
+
+  /* ---------- Rendu : catégories ---------- */
+  function renderCats(){
+    var total = PRODUCTS.length;
+    var html = '<div class="cat-card" data-cat="Tous"><div class="cat-icon" style="background:linear-gradient(135deg,#ffe1d4,#ffcdb8);color:#ff5a2c">'+iconSVG("ui-gift","ic-lg")+'</div><h3>Tous les produits</h3><span>'+total+' articles</span></div>';
+    Object.keys(CATS).forEach(function(c){
+      var m = CATS[c], n = PRODUCTS.filter(function(p){ return p.cat===c; }).length;
+      html += '<div class="cat-card" data-cat="'+c+'"><div class="cat-icon" style="background:'+m.grad+';color:'+m.color+'">'+iconSVG("i-"+m.icon,"ic-lg")+'</div><h3>'+c+'</h3><span>'+n+' articles</span></div>';
+    });
+    $("#catGrid").innerHTML = html;
+    $$("#catGrid .cat-card").forEach(function(el){
+      el.addEventListener("click", function(){
+        setFilter(el.getAttribute("data-cat"));
+        document.getElementById("boutique").scrollIntoView({behavior:"smooth"});
+      });
+    });
+  }
+
+  /* ---------- Rendu : boutique ---------- */
+  function renderChips(){
+    var cats = ["Tous"].concat(Object.keys(CATS));
+    $("#catChips").innerHTML = cats.map(function(c){
+      return '<button class="chip'+(state.cat===c?" active":"")+'" data-cat="'+c+'">'+c+'</button>';
+    }).join("");
+    $$("#catChips .chip").forEach(function(b){
+      b.addEventListener("click", function(){ setFilter(b.getAttribute("data-cat")); });
+    });
+  }
+
+  function setFilter(c){
+    state.cat = c; renderChips(); renderGrid();
+  }
+
+  function filtered(){
+    var list = PRODUCTS.slice();
+    if(state.cat !== "Tous") list = list.filter(function(p){ return p.cat===state.cat; });
+    if(state.q){
+      var q = state.q.toLowerCase();
+      list = list.filter(function(p){ return (p.name+" "+p.cat).toLowerCase().indexOf(q) !== -1; });
+    }
+    switch(state.sort){
+      case "price-asc":  list.sort(function(a,b){ return a.price-b.price; }); break;
+      case "price-desc": list.sort(function(a,b){ return b.price-a.price; }); break;
+      case "rating":     list.sort(function(a,b){ return b.rating-a.rating; }); break;
+      case "promo":      list.sort(function(a,b){ return (b.old?discount(b):0)-(a.old?discount(a):0); }); break;
+    }
+    return list;
+  }
+
+  function productCard(p){
+    var m = catMeta(p.cat);
+    var badge = "";
+    if(p.badge==="promo") badge = '<span class="pc-tag promo">−'+discount(p)+'%</span>';
+    if(p.badge==="new")   badge = '<span class="pc-tag new">Nouveau</span>';
+    if(p.badge==="best")  badge = '<span class="pc-tag best">Best-seller</span>';
+    return '<article class="product-card" data-id="'+p.id+'">'
+      + '<div class="pc-img" style="background:'+m.grad+'">'
+      +   '<div class="pc-badges">'+badge+'</div>'
+      +   '<button class="pc-fav" aria-label="Ajouter aux favoris" data-fav="'+p.id+'">'+iconSVG("ui-heart")+'</button>'
+      +   '<svg class="p-icon" viewBox="0 0 120 120" style="color:'+m.color+'" aria-hidden="true"><use href="#i-'+p.icon+'"/></svg>'
+      + '</div>'
+      + '<div class="pc-body">'
+      +   '<span class="pc-cat">'+p.cat+'</span>'
+      +   '<h3 class="pc-name">'+p.name+'</h3>'
+      +   '<div class="pc-rating"><span class="stars">'+starsHTML(p.rating)+'</span> '+p.rating+' ('+p.reviews+')</div>'
+      +   '<div class="pc-price-row">'
+      +     '<span class="price">'+fmt(p.price)+(p.old?'<span class="old">'+fmt(p.old)+'</span>':'')+'</span>'
+      +     '<button class="pc-add" data-add="'+p.id+'" aria-label="Ajouter au panier" title="Ajouter au panier">'+iconSVG("ui-plus")+'</button>'
+      +   '</div>'
+      + '</div>'
+      + '</article>';
+  }
+
+  function renderGrid(){
+    var list = filtered();
+    $("#resultCount").textContent = list.length + " produit" + (list.length>1?"s":"");
+    if(!list.length){
+      $("#prodGrid").innerHTML = '<div class="empty-state">'+iconSVG("ui-search")+"<h3>Aucun produit trouvé</h3><p>Essayez un autre mot-clé ou une autre catégorie.</p></div>";
+      return;
+    }
+    $("#prodGrid").innerHTML = list.map(productCard).join("");
+    $$("#prodGrid [data-add]").forEach(function(b){
+      b.addEventListener("click", function(){ addToCart(parseInt(b.getAttribute("data-add"),10)); });
+    });
+    $$("#prodGrid [data-fav]").forEach(function(b){
+      b.addEventListener("click", function(e){
+        e.stopPropagation();
+        b.classList.toggle("active");
+      });
+    });
+    $$("#prodGrid .product-card").forEach(function(c){
+      c.addEventListener("click", function(e){
+        if(e.target.closest("[data-add]") || e.target.closest("[data-fav]")) return;
+        openQuick(parseInt(c.getAttribute("data-id"),10));
+      });
+    });
+  }
+
+  /* ---------- Panier ---------- */
+  function cartList(){
+    return Object.keys(cart).map(function(k){ return { p: PRODUCTS.find(function(x){return x.id===+k;}), q: cart[k] }; })
+      .filter(function(it){ return it.p; });
+  }
+  function cartCount(){ return cartList().reduce(function(s,it){ return s+it.q; },0); }
+  function cartSubtotal(){ return cartList().reduce(function(s,it){ return s+it.p.price*it.q; },0); }
+
+  function addToCart(id, qty){
+    qty = qty || 1;
+    cart[id] = (cart[id]||0) + qty;
+    saveCart(); renderCart(); showToast("Ajouté au panier ✓");
+    var c = $("#cartCount");
+    c.classList.remove("bump"); void c.offsetWidth; c.classList.add("bump");
+  }
+  function setQty(id, q){
+    if(q<=0){ delete cart[id]; } else { cart[id]=q; }
+    saveCart(); renderCart();
+  }
+
+  function renderCart(){
+    var items = cartList();
+    $("#cartCount").textContent = cartCount();
+    var box = $("#cartItems");
+    if(!items.length){
+      box.innerHTML = '<div class="cart-empty">'+iconSVG("ui-cart")+'<h3 style="margin-bottom:.3rem">Votre panier est vide</h3><p>Découvrez nos produits et faites-vous plaisir !</p><button class="btn btn-primary btn-sm" id="goShop" style="margin-top:1rem">Voir la boutique</button></div>';
+      var gs = $("#goShop");
+      if(gs) gs.addEventListener("click", function(){ closeCart(); document.getElementById("boutique").scrollIntoView({behavior:"smooth"}); });
+      $("#cartFoot").style.display = "none";
+      return;
+    }
+    $("#cartFoot").style.display = "";
+    box.innerHTML = items.map(function(it){
+      var m = catMeta(it.p.cat);
+      return '<div class="cart-item">'
+        + '<div class="ci-img" style="background:'+m.grad+'"><svg viewBox="0 0 120 120" style="color:'+m.color+'"><use href="#i-'+it.p.icon+'"/></svg></div>'
+        + '<div class="ci-info"><b>'+it.p.name+'</b><span class="ci-price">'+fmt(it.p.price)+'</span>'
+        + '<div class="qty">'
+        +   '<button data-dec="'+it.p.id+'" aria-label="Diminuer">'+iconSVG("ui-minus","ic")+'</button>'
+        +   '<span>'+it.q+'</span>'
+        +   '<button data-inc="'+it.p.id+'" aria-label="Augmenter">'+iconSVG("ui-plus","ic")+'</button>'
+        + '</div></div>'
+        + '<div style="display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between">'
+        +   '<button class="ci-remove" data-del="'+it.p.id+'" aria-label="Retirer">'+iconSVG("ui-trash")+'</button>'
+        +   '<b style="font-size:.9rem">'+fmt(it.p.price*it.q)+'</b>'
+        + '</div></div>';
+    }).join("");
+
+    $$("#cartItems [data-inc]").forEach(function(b){ b.addEventListener("click", function(){ setQty(+b.getAttribute("data-inc"), (cart[b.getAttribute("data-inc")]||0)+1); }); });
+    $$("#cartItems [data-dec]").forEach(function(b){ b.addEventListener("click", function(){ setQty(+b.getAttribute("data-dec"), (cart[b.getAttribute("data-dec")]||0)-1); }); });
+    $$("#cartItems [data-del]").forEach(function(b){ b.addEventListener("click", function(){ setQty(+b.getAttribute("data-del"), 0); showToast("Produit retiré du panier"); }); });
+
+    var sub = cartSubtotal();
+    var ship = sub >= FREE_SHIP || sub === 0 ? 0 : SHIP_FEE;
+    $("#subTotal").textContent = fmt(sub);
+    $("#shipCost").textContent = ship === 0 ? "Gratuite" : fmt(ship);
+    $("#grandTotal").textContent = fmt(sub + ship);
+
+    var fs = $("#freeShip");
+    if(sub >= FREE_SHIP){
+      fs.innerHTML = "🎉 Félicitations ! Vous bénéficiez de la livraison gratuite.<div class='bar'><i style='width:100%'></i></div>";
+    } else {
+      var pct = Math.min(100, Math.round(sub/FREE_SHIP*100));
+      fs.innerHTML = "Plus que <b> "+fmt(FREE_SHIP-sub)+" </b> pour la livraison gratuite.<div class='bar'><i style='width:"+pct+"%'></i></div>";
+    }
+  }
+
+  function openCart(){ $("#cartDrawer").classList.add("open"); $("#cartOverlay").classList.add("show"); document.body.classList.add("no-scroll"); }
+  function closeCart(){ $("#cartDrawer").classList.remove("open"); $("#cartOverlay").classList.remove("show"); document.body.classList.remove("no-scroll"); }
+
+  /* ---------- Aperçu produit ---------- */
+  var quickQty = 1, quickId = null;
+  function openQuick(id){
+    var p = PRODUCTS.find(function(x){ return x.id===id; });
+    if(!p) return;
+    quickId = id; quickQty = 1;
+    var m = catMeta(p.cat);
+    $("#quickContent").innerHTML =
+      '<div class="qv-grid">'
+      + '<div class="qv-media" style="background:'+m.grad+'">'
+      +   '<svg viewBox="0 0 120 120" style="color:'+m.color+'"><use href="#i-'+p.icon+'"/></svg>'
+      + '</div>'
+      + '<div class="qv-info">'
+      +   '<span class="pc-cat">'+p.cat+(p.badge==="new"?' · <b style="color:var(--green)">Nouveau</b>':'')+(p.badge==="best"?' · <b style="color:#7c3aed">Best-seller</b>':'')+'</span>'
+      +   '<h3 class="pc-name">'+p.name+'</h3>'
+      +   '<div class="pc-rating"><span class="stars">'+starsHTML(p.rating)+'</span> '+p.rating+' · '+p.reviews+' avis</div>'
+      +   '<span class="qv-price price">'+fmt(p.price)+(p.old?'<span class="old">'+fmt(p.old)+'</span>':'')+'</span>'
+      +   '<p class="qv-desc">'+p.desc+'</p>'
+      +   '<div style="display:flex;gap:.7rem;align-items:center;margin-top:.3rem">'
+      +     '<div class="qty" style="margin-top:0"><button id="qvDec" aria-label="Diminuer">'+iconSVG("ui-minus","ic")+'</button><span id="qvQty">1</span><button id="qvInc" aria-label="Augmenter">'+iconSVG("ui-plus","ic")+'</button></div>'
+      +     '<b style="color:var(--primary)" id="qvLine">'+fmt(p.price)+'</b>'
+      +   '</div>'
+      +   '<div class="qv-actions">'
+      +     '<button class="btn btn-primary" id="qvAdd">'+iconSVG("ui-cart")+' Ajouter au panier</button>'
+      +     '<button class="btn btn-outline" id="qvBuy">Acheter maintenant</button>'
+      +   '</div>'
+      + '</div></div>';
+
+    $("#qvDec").addEventListener("click", function(){ quickQty = Math.max(1, quickQty-1); $("#qvQty").textContent = quickQty; $("#qvLine").textContent = fmt(p.price*quickQty); });
+    $("#qvInc").addEventListener("click", function(){ quickQty++; $("#qvQty").textContent = quickQty; $("#qvLine").textContent = fmt(p.price*quickQty); });
+    $("#qvAdd").addEventListener("click", function(){ addToCart(id, quickQty); closeModal("quick"); openCart(); });
+    $("#qvBuy").addEventListener("click", function(){ addToCart(id, quickQty); closeModal("quick"); openCheckout(); });
+    openModal("quick");
+  }
+
+  /* ---------- Commandes ---------- */
+  function openCheckout(){
+    if(!cartList().length){ showToast("Votre panier est vide"); return; }
+    var items = cartList();
+    var sub = cartSubtotal();
+    var ship = sub >= FREE_SHIP ? 0 : SHIP_FEE;
+    $("#coSummary").innerHTML = items.map(function(it){
+      return '<div class="row"><span>'+it.p.name+' × '+it.q+'</span><span>'+fmt(it.p.price*it.q)+'</span></div>';
+    }).join("")
+    + '<div class="row"><span>Livraison</span><span>'+(ship===0?"Gratuite":fmt(ship))+'</span></div>'
+    + '<div class="row total"><span>Total à payer</span><span>'+fmt(sub+ship)+'</span></div>';
+    openModal("checkout");
+    closeCart();
+  }
+
+  $("#checkoutForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    var ref = "SS-" + Math.floor(100000 + Math.random()*900000);
+    $("#orderRef").textContent = ref;
+    cart = {}; saveCart(); renderCart();
+    closeModal("checkout");
+    openModal("success");
+    this.reset();
+  });
+
+  /* ---------- Modales ---------- */
+  function openModal(name){ $("[id="+name+"Modal]").classList.add("show"); document.body.classList.add("no-scroll"); }
+  function closeModal(name){ $("[id="+name+"Modal]").classList.remove("show"); document.body.classList.remove("no-scroll"); }
+  $$(".modal [data-close]").forEach(function(el){
+    el.addEventListener("click", function(){ closeModal(el.getAttribute("data-close")); });
+  });
+
+  /* ---------- Compte à rebours ---------- */
+  function tick(){
+    var now = new Date();
+    var end = new Date(); end.setHours(23,59,59,999);
+    var d = Math.max(0, end - now);
+    var h = Math.floor(d/3.6e6), m = Math.floor(d%3.6e6/6e4), s = Math.floor(d%6e4/1000);
+    $("#cdH").textContent = ("0"+h).slice(-2);
+    $("#cdM").textContent = ("0"+m).slice(-2);
+    $("#cdS").textContent = ("0"+s).slice(-2);
+  }
+  tick(); setInterval(tick, 1000);
+
+  /* ---------- Thème ---------- */
+  var themeBtn = $("#themeBtn"), themeIcon = $("#themeIcon");
+  function applyTheme(t){
+    document.documentElement.setAttribute("data-theme", t);
+    themeIcon.innerHTML = '<use href="#'+(t==="dark"?"ui-sun":"ui-moon")+'"/>';
+    if(store.ok) localStorage.setItem("ssTheme", t);
+  }
+  themeBtn.addEventListener("click", function(){
+    applyTheme(document.documentElement.getAttribute("data-theme")==="dark" ? "light" : "dark");
+  });
+  if(store.ok && localStorage.getItem("ssTheme")) applyTheme(localStorage.getItem("ssTheme"));
+
+  /* ---------- Recherche ---------- */
+  $("#searchInput").addEventListener("input", function(e){
+    state.q = e.target.value;
+    renderGrid();
+  });
+  $("#heroSearch").addEventListener("submit", function(e){
+    e.preventDefault();
+    document.getElementById("boutique").scrollIntoView({behavior:"smooth"});
+  });
+
+  /* ---------- Tri ---------- */
+  $("#sortSelect").addEventListener("change", function(e){ state.sort = e.target.value; renderGrid(); });
+
+  /* ---------- Newsletter ---------- */
+  $("#nlForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    showToast("Merci ! Vous êtes inscrit(e) à la newsletter 🎉");
+    this.reset();
+  });
+
+  /* ---------- Menu mobile ---------- */
+  var mm = $("#mobileMenu");
+  $("#burgerBtn").addEventListener("click", function(){
+    mm.classList.add("open"); document.body.classList.add("no-scroll");
+    $("#burgerBtn").setAttribute("aria-expanded","true");
+  });
+  $("#mmClose").addEventListener("click", function(){
+    mm.classList.remove("open"); document.body.classList.remove("no-scroll");
+    $("#burgerBtn").setAttribute("aria-expanded","false");
+  });
+  $$(".mobile-menu a").forEach(function(a){
+    a.addEventListener("click", function(){
+      mm.classList.remove("open"); document.body.classList.remove("no-scroll");
+    });
+  });
+
+  /* ---------- Footer : liens catégories ---------- */
+  $$("[data-cat]").forEach(function(a){
+    if(a.closest("footer")){
+      a.addEventListener("click", function(e){
+        e.preventDefault();
+        setFilter(a.getAttribute("data-cat"));
+      });
+    }
+  });
+
+  /* ---------- Toast ---------- */
+  var toastTimer = null;
+  function showToast(msg){
+    $("#toastMsg").textContent = msg;
+    $("#toast").classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ $("#toast").classList.remove("show"); }, 2600);
+  }
+
+  /* ---------- Navigation active + révélations ---------- */
+  var sections = ["accueil","boutique","categories","promo","avantages","contact"];
+  var navLinks = $$(".nav-desktop a");
+  window.addEventListener("scroll", function(){
+    var y = window.scrollY + 140, cur = "accueil";
+    sections.forEach(function(id){
+      var el = document.getElementById(id);
+      if(el && el.offsetTop <= y) cur = id;
+    });
+    navLinks.forEach(function(a){
+      a.classList.toggle("active", a.getAttribute("href") === "#"+cur);
+    });
+  }, { passive:true });
+
+  if("IntersectionObserver" in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add("visible"); io.unobserve(en.target); } });
+    }, { threshold:.12 });
+    $$(".reveal").forEach(function(el){ io.observe(el); });
+  } else {
+    $$(".reveal").forEach(function(el){ el.classList.add("visible"); });
+  }
+
+  /* ---------- Écouteurs globaux ---------- */
+  $("#cartBtn").addEventListener("click", openCart);
+  $("#cartClose").addEventListener("click", closeCart);
+  $("#cartOverlay").addEventListener("click", closeCart);
+  $("#checkoutBtn").addEventListener("click", openCheckout);
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape"){ closeCart(); closeModal("quick"); closeModal("checkout"); closeModal("success"); }
+  });
+
+  /* ---------- Init ---------- */
+  loadCart();
+  renderCats();
+  renderChips();
+  renderGrid();
+  renderCart();
+})();
+</script>
+</body>
+</html>
